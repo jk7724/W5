@@ -12,7 +12,7 @@ namespace Models
     public class ApplicationUser : IdentityUser
     {
        
-         public List<Set> Sets { get; set; }
+        public List<Set> Sets { get; set; }
 
         [NotMapped]
         public string Role { get; set; }
