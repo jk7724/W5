@@ -12,29 +12,39 @@ namespace Models
     {
         [Key]
         public int Id { get; set; }
+        [Required]
+        public string Name { get; set; }
+        [Required]
         public string NativeLanguage { get; set; }
+        [Required]
         public string LearnLanguage { get; set; }
         [Required]
+
+        [Column(TypeName = "date")] //Convert DataTime to Date
         public DateTime CreateDate { get; set; }
-        [Required]
+
+        [Column(TypeName = "date")]
         public DateTime Repeat1 { get; set; }
-        [Required]
+
+        [Column(TypeName = "date")]
         public DateTime Repeat2 { get; set; }
-        [Required]
+
+        [Column(TypeName = "date")]
         public DateTime Repeat3 { get; set; }
-        [Required]
+
+        [Column(TypeName = "date")]
         public DateTime Repeat4 { get; set; }
-        [Required]
+        [Column(TypeName = "date")]
         public DateTime Repeat5 { get; set; }
-        [Required]
+       
         public bool Repeat1Flag { get; set; }
-        [Required]
+       
         public bool Repeat2Flag { get; set; }
-        [Required]
+        
         public bool Repeat3Flag { get; set; }
-        [Required]
+       
         public bool Repeat4Flag { get; set; }
-        [Required]
+      
         public bool Repeat5Flag { get; set; }
 
         public List<Vocabulary> Vocabulary { get; set; }
