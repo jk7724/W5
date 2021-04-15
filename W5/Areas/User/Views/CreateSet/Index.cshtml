@@ -8,7 +8,7 @@
 
 <form method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="ApplicationUserId" value="@User.Identity.Name" />
+    
     <div class="form-group row">
         <label class="col-2 pt-2" asp-for="Name">Nazwa</label>
         <div class="col-6">
@@ -46,7 +46,7 @@
             <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
         </div>
     </div>
-    <div>@User.Identity.Name</div>
+    
 </form>
 
 @section Scripts{

@@ -1,0 +1,72 @@
+﻿@model Models.Vocabulary
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Add Word</h1>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="SetId" />
+    <div class="form-group-row">
+        <label class="col-2" asp-for="NativeWord">Słówko natywne</label>
+        <div class="col-6">
+            <input class="form-control" asp-for="NativeWord" type="text" placeholder="Podaj słówko w jezyku natywnym" />
+            <span asp-validation-for="NativeWord" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group-row">
+        <label class="col-2" asp-for="LearnWord">Słówko obce</label>
+        <div class="col-6">
+            <input class="form-control" asp-for="LearnWord" type="text" placeholder="Podaj słówko w języku obcym" />
+            <span asp-validation-for="LearnWord" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group-row">
+        <label class="col-2" asp-for="NativeSentence">Zdanie natywne</label>
+        <div class="col-6">
+            <input class="form-control" asp-for="NativeSentence" type="text" placeholder="Podaj zdanie w jezyku natywnym" />
+            <span asp-validation-for="NativeSentence" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group-row">
+        <label class="col-2" asp-for="LearnSentence">Zdanie natywne</label>
+        <div class="col-6">
+            <input class="form-control" asp-for="LearnSentence" type="text" placeholder="Podaj zdanie w jezyku obcym" />
+            <span asp-validation-for="LearnSentence" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button type="submit" class="btn btn-primary form-control">Add Word</button>
+        </div>
+        <div class="col">
+            <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
+        </div>
+    </div>
+
+</form>
+
+<div class="p-4 border rounded">
+    <table id="table_id" class="table table-striped table-bordered" style="width:100%">
+        <thead class="thead-dark">
+            <tr class="table-info">
+                <th>NativeWord</th>
+                <th>LearnWord</th>
+
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts{
+
+    <script>
+        var SetId = @Html.Raw(Model.SetId);
+    </script>
+
+    <script src="~/js/addword.js"></script>
+}
+
