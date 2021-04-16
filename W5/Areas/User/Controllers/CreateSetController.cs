@@ -34,6 +34,28 @@ namespace W5.Areas.User.Controllers
 
             return View(vocObj);
         }
+        public IActionResult Edit(int id)
+        {
+            var vocObj = _db.Vocabulary.FirstOrDefault(x => x.Id == id);
+
+            if(vocObj == null)
+            {
+                return NotFound();
+            }
+            return View(vocObj);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Vocabulary obj)
+        {
+            if(ModelState.IsValid)
+            {
+                _db.Vocabulary.Update(obj);
+                _db.SaveChanges();
+                return RedirectToAction("AddWord", new { setId = obj.SetId });
+            }
+            return View(obj);
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult AddWord(Vocabulary obj)
@@ -87,7 +109,7 @@ namespace W5.Areas.User.Controllers
             return RedirectToAction("AddWord", new { setId = setFromDb.Id });
         }
 
-        #region
+        #region API CALLS
         [HttpGet]
         public IActionResult GetAll(int SetID)
         {
@@ -95,6 +117,23 @@ namespace W5.Areas.User.Controllers
             var data = _db.Vocabulary.Where(x=>x.SetId == SetID).ToList();
 
             return Json(new { data = data });
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            var vocObj = _db.Vocabulary.FirstOrDefault(x => x.Id == id);
+
+            if(vocObj == null)
+            {
+                return Json(new { success = false, message = "Something went wrong!" });
+            }
+
+            _db.Vocabulary.Remove(vocObj);
+
+            _db.SaveChanges();
+
+            return Json(new { success = true, message = "The object was successfully deleted from Db " });
         }
 
         #endregion

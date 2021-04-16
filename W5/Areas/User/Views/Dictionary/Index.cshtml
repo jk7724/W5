@@ -1,8 +1,67 @@
-﻿
+﻿@model Models.ViewModels.SetsVM
+
 @{
-    ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>To widzi user</h1>
+<form method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+    
+    <div class="form-group row">
+        <div class="col-4">
+            Wybierz set
+        </div>
+        <div class="col-8">
+            @Html.DropDownListFor(m => m.SetId, Model.SetsList, "-Select a set",
+           new { @class = "form-control" })
+            <span asp-validation-for="SetId" class="text-danger"></span>
+        </div>
 
+        <div class="row mt-2">
+            <div class="col">
+                <button type="submit" class="btn btn-primary form-control">Wybierz</button>
+            </div>
+            <div class="col">
+                <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+<div class="p-4 border rounded mt-2">
+    <table id="table_id" class="table table-striped table-bordered" style="width:100%">
+        <thead class="thead-dark">
+            <tr class="table-info">
+                <th>NativeWord</th>
+                <th>LearnWord</th>
+                <th>NativeSentece</th>
+                <th>LearnSentece</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<div class="p-4 border rounded mt-2">
+    <table id="table_id" class="table table-striped table-bordered" style="width:100%">
+        <thead class="thead-dark">
+            <tr class="table-info">
+                <th>NativeWord</th>
+                <th>LearnWord</th>
+                <th>NativeSentece</th>
+                <th>LearnSentece</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts{ 
+
+    <script>
+        var SetId = @Html.Raw(Model.SetId);
+    </script>
+    <script src="~/js/dictionary.js"></script>
+
+}
