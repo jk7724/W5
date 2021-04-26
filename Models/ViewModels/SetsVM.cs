@@ -10,7 +10,7 @@ namespace Models.ViewModels
     public class SetsVM
     {
         public int SetId { get; set; }
-
+       
         public IEnumerable<SelectListItem> SetsList { get; set; }
     }
 }

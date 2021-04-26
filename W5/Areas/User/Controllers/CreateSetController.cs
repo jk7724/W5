@@ -48,6 +48,7 @@ namespace W5.Areas.User.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Vocabulary obj)
         {
+
             if(ModelState.IsValid)
             {
                 _db.Vocabulary.Update(obj);
@@ -124,7 +125,7 @@ namespace W5.Areas.User.Controllers
         {
             var vocObj = _db.Vocabulary.FirstOrDefault(x => x.Id == id);
 
-            if(vocObj == null)
+            if (vocObj == null)
             {
                 return Json(new { success = false, message = "Something went wrong!" });
             }
