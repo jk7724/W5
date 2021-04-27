@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using W5.DataAccess.Data;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210426123727_Update2RepetitionEvent")]
+    partial class Update2RepetitionEvent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -242,9 +244,6 @@ namespace DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SetId")
-                        .HasColumnType("int");
-
                     b.Property<string>("SetName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -252,8 +251,6 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("SetId");
 
                     b.ToTable("RepetitionEvents");
                 });
@@ -385,15 +382,7 @@ namespace DataAccess.Migrations
                         .WithMany()
                         .HasForeignKey("ApplicationUserId");
 
-                    b.HasOne("Models.Set", "Set")
-                        .WithMany("RepetitionEvent")
-                        .HasForeignKey("SetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("ApplicationUser");
-
-                    b.Navigation("Set");
                 });
 
             modelBuilder.Entity("Models.Set", b =>
@@ -418,8 +407,6 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Models.Set", b =>
                 {
-                    b.Navigation("RepetitionEvent");
-
                     b.Navigation("Vocabulary");
                 });
 

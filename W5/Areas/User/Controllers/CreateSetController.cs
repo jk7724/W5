@@ -87,17 +87,28 @@ namespace W5.Areas.User.Controllers
 
                 setObj.ApplicationUserId = userId;
                 
-                //generate repetition date after 1, 2, 5, 9, 15 days
-                setObj.Repeat1 = setObj.CreateDate.AddDays(1);
-                setObj.Repeat2 = setObj.Repeat1.AddDays(2);
-                setObj.Repeat3 = setObj.Repeat2.AddDays(5);
-                setObj.Repeat4 = setObj.Repeat3.AddDays(9);
-                setObj.Repeat5 = setObj.Repeat4.AddDays(15);
-                
                 _db.Sets.Add(setObj);
                 _db.SaveChanges();
 
-                
+                //Create RepetitionEvent. Set date after 1, 3, 8, 17, 32 days after CraeDate
+                for (int i = 0; i < 5; i++)
+                {
+                    var obj = new RepetitionEvent();
+                    obj.ApplicationUserId = userId;
+                    obj.SetId = setObj.Id;
+                    obj.SetName = setObj.Name;
+                    obj.Repetition = " Repetition: " + (i + 1);
+                    if (i == 0) obj.Date = setObj.CreateDate.AddDays(1);
+                    else if (i == 1) obj.Date = setObj.CreateDate.AddDays(3);
+                    else if (i == 2) obj.Date = setObj.CreateDate.AddDays(8);
+                    else if (i == 3) obj.Date = setObj.CreateDate.AddDays(17);
+                    else if (i == 4) obj.Date = setObj.CreateDate.AddDays(32);
+
+                    _db.RepetitionEvents.Add(obj);
+
+                }
+                _db.SaveChanges();
+
             }
             
             //AddWord controler create Vocabulary. We need send to controler Sets Id as a foreign key

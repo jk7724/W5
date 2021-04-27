@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using W5.DataAccess.Data;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210426123144_updateRepetitionEvent")]
+    partial class updateRepetitionEvent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -238,16 +240,12 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Repetition")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SetId")
                         .HasColumnType("int");
-
-                    b.Property<string>("SetName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -386,7 +384,7 @@ namespace DataAccess.Migrations
                         .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("Models.Set", "Set")
-                        .WithMany("RepetitionEvent")
+                        .WithMany()
                         .HasForeignKey("SetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -418,8 +416,6 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("Models.Set", b =>
                 {
-                    b.Navigation("RepetitionEvent");
-
                     b.Navigation("Vocabulary");
                 });
 

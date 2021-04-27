@@ -1,8 +1,46 @@
-﻿
+﻿@model IEnumerable<Models.RepetitionEvent> 
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var today = DateTime.Today;
 }
 
-<h1>Repeat</h1>
+<h1 style="text-align:center;">Wybierz zestaw do powtórzenia!</h1>
+
+<div class="border form-group row">
+    <div class="col-6">
+        <h2 style="text-align:center;">Dzisiaj</h2>
+        @foreach (var x in Model)
+        {
+            @if (today == x.Date)
+            {
+                <div class="mt-2">
+                    <a asp-action="StartRepeat" asp-route-id="@x.SetId" class="btn btn-success form-control">@x.SetName</a>
+                </div>
+            }
+
+        }
+    </div>
+    <div class="col-6">
+        <h2 style="text-align:center;">Zaległe</h2>
+        @foreach (var x in Model)
+        {
+            @if (today != x.Date)
+            {
+                <div class="mt-2">
+                    <a asp-action="StartRepeat" asp-route-id="@x.SetId" class="btn btn-danger form-control">@x.SetName</a>
+                </div>
+            }
+
+        }
+    </div>
+   
+        <div class="col-4 mt-4">
+            <a asp-action="Index" class="btn btn-info form-control">Back</a>
+        </div>
+       
+
+</div>
+
 

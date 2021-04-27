@@ -17,6 +17,9 @@ namespace W5.DataAccess.Data
         public DbSet<Set> Sets { get; set; }
         public DbSet<Vocabulary> Vocabulary { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<RepetitionEvent> RepetitionEvents { get; set; }
+
+
 
     }
 }

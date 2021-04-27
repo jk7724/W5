@@ -26,31 +26,8 @@ namespace Models
         [Column(TypeName = "date")] //Convert DataTime to Date
         public DateTime CreateDate { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime Repeat1 { get; set; }
-
-        [Column(TypeName = "date")]
-        public DateTime Repeat2 { get; set; }
-
-        [Column(TypeName = "date")]
-        public DateTime Repeat3 { get; set; }
-
-        [Column(TypeName = "date")]
-        public DateTime Repeat4 { get; set; }
-        [Column(TypeName = "date")]
-        public DateTime Repeat5 { get; set; }
-       
-        public bool Repeat1Flag { get; set; }
-       
-        public bool Repeat2Flag { get; set; }
-        
-        public bool Repeat3Flag { get; set; }
-       
-        public bool Repeat4Flag { get; set; }
-      
-        public bool Repeat5Flag { get; set; }
-
         public List<Vocabulary> Vocabulary { get; set; }
+        public List<RepetitionEvent> RepetitionEvent { get; set; }
 
         public string ApplicationUserId { get; set; }
         [ForeignKey("ApplicationUserId")]
