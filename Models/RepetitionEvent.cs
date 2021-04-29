@@ -14,10 +14,8 @@ namespace Models
         public int Id { get; set; }
 
         [Required]
-        public string SetName { get; set; }
-        [Required]
-        public string Repetition { get; set; }
-
+        public string Name { get; set; }
+        
         [Required]
         public DateTime Date { get; set; }
 

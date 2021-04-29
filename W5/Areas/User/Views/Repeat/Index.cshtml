@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Models.RepetitionEvent> 
+﻿@model IEnumerable<Models.RepetitionEvent>
 
 @{
     ViewData["Title"] = "Index";
@@ -6,41 +6,55 @@
     var today = DateTime.Today;
 }
 
-<h1 style="text-align:center;">Wybierz zestaw do powtórzenia!</h1>
-
-<div class="border form-group row">
-    <div class="col-6">
-        <h2 style="text-align:center;">Dzisiaj</h2>
-        @foreach (var x in Model)
-        {
-            @if (today == x.Date)
+<h2 style="text-align:center;">Wybierz zestaw do powtórzenia!</h2>
+<br />
+@if (Model.Count() != 0)
+{
+    <div class="border form-group row mt-3">
+        <div class="col-6">
+            <h2 style="text-align:center;">Dzisiaj</h2>
+            <br />
+            @foreach (var x in Model)
             {
-                <div class="mt-2">
-                    <a asp-action="StartRepeat" asp-route-id="@x.SetId" class="btn btn-success form-control">@x.SetName</a>
-                </div>
-            }
+                @if (today == x.Date)
+                {
+                    <div class="mt-2">
+                        <a asp-action="StartRepeat" asp-route-id="@x.Id" class="btn btn-success form-control">@x.Name</a>
+                    </div>
+                }
 
-        }
-    </div>
-    <div class="col-6">
-        <h2 style="text-align:center;">Zaległe</h2>
-        @foreach (var x in Model)
-        {
-            @if (today != x.Date)
-            {
-                <div class="mt-2">
-                    <a asp-action="StartRepeat" asp-route-id="@x.SetId" class="btn btn-danger form-control">@x.SetName</a>
-                </div>
             }
-
-        }
-    </div>
-   
-        <div class="col-4 mt-4">
-            <a asp-action="Index" class="btn btn-info form-control">Back</a>
         </div>
-       
+        <div class="col-6">
+            <h2 style="text-align:center;">Zaległe</h2>
+            <br />
+            @foreach (var x in Model)
+            {
+                @if (today != x.Date)
+                {
+                    <div class="mt-2">
+                        <a asp-action="StartRepeat" asp-route-id="@x.Id" class="btn btn-danger form-control">@x.Name</a>
+                    </div>
+                }
 
-</div>
+            }
+        </div>
+
+        <div class="col-4 mt-4 m-2">
+            <a asp-action="Index" asp-controller="Home" class="btn btn-info form-control">Powrót</a>
+        </div>
+
+    </div>
+
+}
+else
+{
+    <h2 style="text-align:center;"> Brak powtórek na dziś! </h2>
+
+    <div class="col-4 mt-4 m-2">
+        <a asp-action="Index" asp-controller="Home" class="btn btn-info form-control">Powrót</a>
+    </div>
+}
+
 
 

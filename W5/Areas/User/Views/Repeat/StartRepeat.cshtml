@@ -1,8 +1,56 @@
-﻿
+﻿@model Models.RepetitionEvent
+
 @{
     ViewData["Title"] = "StartRepeat";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="m-5">
+    <h3>@Model.Name</h3>
+</div>
 
-<h1>StartRepeat</h1>
+<div id ="content" class="m-5">
+    
+    @*<div class="border">
+        <br /> <br />
+        <h1 style="text-align:center;" class="nativeW">Słówko PL</h1>
+        <div class="form-group row mt-5 mb-5">
+            <div class="col-4">
+                <h3>Prawidłowa odpowiedź: </h3>
+            </div>
+            <div class="col-6">
+                <h3>Cat</h3>
+            </div>
+        </div>
+        <div class="form-group row mt-5 mb-5">
+            <div class="col-4">
+                <h3>Twoja odpowiedź: </h3>
+            </div>
+            <div class="col-6">
+                <h3>DogCat: </h3>
+            </div>
+        </div>
+        
+        <div class="form-group row mt-5 mb-5">
+            <div class="col-4"><h4>Przykładowe zdanie:</h4></div>
+            <div class="col-4">
+                <h4>Lubie koty </h4>
+            </div>
+            <div class="col-4">
+                <h4>I like cats </h4>
+            </div>
+        </div>
+        <div class="col-10 ml-5">
+            <button class="btn-success form-control" onclick="nextWord()">Dalej</button>
+        </div>
+        <br /> <br /> <br /> <br />
+    </div>*@
+    
+</div>
 
+@section Scripts{
+    <script>
+        var setId = @Html.Raw(Model.SetId);
+        var rEventId = @Html.Raw(Model.Id);
+    </script>
+    <script src="~/js/repeat.js"></script>
+}

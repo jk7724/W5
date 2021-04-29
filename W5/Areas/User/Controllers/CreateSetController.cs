@@ -96,8 +96,8 @@ namespace W5.Areas.User.Controllers
                     var obj = new RepetitionEvent();
                     obj.ApplicationUserId = userId;
                     obj.SetId = setObj.Id;
-                    obj.SetName = setObj.Name;
-                    obj.Repetition = " Repetition: " + (i + 1);
+                    obj.Name = setObj.Name + " Repetition: " + (i + 1);
+                    
                     if (i == 0) obj.Date = setObj.CreateDate.AddDays(1);
                     else if (i == 1) obj.Date = setObj.CreateDate.AddDays(3);
                     else if (i == 2) obj.Date = setObj.CreateDate.AddDays(8);

@@ -31,7 +31,38 @@ namespace W5.Areas.User.Controllers
 
         public IActionResult StartRepeat(int id)
         {
-            return View();
+            var obj = _db.RepetitionEvents.FirstOrDefault(x => x.Id == id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            return View(obj);
         }
+
+        #region ASP CALL
+        [HttpGet]
+        public IActionResult GetAll(int SetId)
+        {
+            var vocList = _db.Vocabulary.Where(x => x.SetId == SetId).ToList();
+
+            return new JsonResult(vocList);
+        }
+        [HttpPost]
+        public IActionResult DeleteAndBack(int Id)
+        {
+            //delete RepeatEvent from db
+
+            var obj = _db.RepetitionEvents.FirstOrDefault(x => x.Id == Id);
+            if(obj == null)
+            {
+                return NotFound();
+            }
+            _db.RepetitionEvents.Remove(obj);
+            _db.SaveChanges();
+
+            return Json(Url.Action("Index", "Repeat"));
+        }
+        #endregion
     }
 }

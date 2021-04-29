@@ -38,14 +38,7 @@ namespace W5.Areas.User.Controllers
             return new JsonResult(list);
 
         }
-        //public JsonResult GetAll()
-        //{
-        //    var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value; //get userId of user who log in
-
-        //    var list = _db.RepetitionEvents.Where(x => x.ApplicationUserId == userId).ToList();
-
-        //    return new JsonResult { Data = list, JsonRequestBehavior = }
-        //}
+       
         #endregion
 
     }

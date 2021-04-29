@@ -9,7 +9,7 @@
     
     <div class="form-group row">
         <div class="col-4">
-            Wybierz set
+            <h3>Wybierz zestaw</h3>
         </div>
         <div class="col-8">
             @Html.DropDownListFor(m => m.SetId, Model.SetsList, "-Select a set",
@@ -17,16 +17,18 @@
             <span asp-validation-for="SetId" class="text-danger"></span>
         </div>
 
-        <div class="row mt-2">
-            <div class="col">
-                <button type="submit" class="btn btn-primary form-control">Wybierz</button>
-            </div>
-            <div class="col">
-                <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
-            </div>
-        </div>
-
     </div>
+
+    <div class="row mt-2">
+        <div class="col-6">
+            <button type="submit" class="btn btn-primary form-control">Wybierz</button>
+        </div>
+        <div class="col-6">
+            <a asp-action="Index" asp-controller="Home" class="btn btn-info form-control">Powrót</a>
+        </div>
+    </div>
+
+    
 </form>
 
 <div class="p-4 border rounded mt-2">

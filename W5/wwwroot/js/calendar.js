@@ -24,7 +24,7 @@ function Calendar() {
                     else if (today == v.date) eventColor = "#1ac6ff";
 
                     events.push({
-                        title: v.setName + v.repetition,
+                        title: v.name,
                         description: null,
                         start: moment(v.date),
                         end: null,
