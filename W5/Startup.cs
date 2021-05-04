@@ -1,3 +1,4 @@
+using EmailService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -14,6 +15,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Utilities;
 using W5.DataAccess.Data;
+using IEmailSender = EmailService.IEmailSender;
 
 namespace W5
 {
@@ -34,13 +36,11 @@ namespace W5
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddDefaultIdentity<IdentityUser>().AddDefaultTokenProviders()
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddDefaultTokenProviders()
                 .AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
-            //services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders()
-            //   .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddSingleton<IEmailSender, EmailSender>();
+            var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+            services.AddSingleton(emailConfig);
+            services.AddScoped<IEmailSender, EmailSender>();
             services.AddControllersWithViews();
 
             services.AddSession(options =>
