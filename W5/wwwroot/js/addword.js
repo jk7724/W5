@@ -21,10 +21,10 @@ function loadTable() {
                     return `
                             <div class="text-center">
                                 <a href="/User/CreateSet/Edit/${data}" class="btn btn-success text-white" style="cursor:pointer">
-                                 Edit   
+                                 Edytuj
                                 </a>
                                 <a onclick=Delete("/User/CreateSet/Delete/${data}") class="btn btn-danger text-white" style="cursor:pointer">
-                                 Delete  
+                                 Usuń  
                                 </a>
                             </div>
                            `;
@@ -37,8 +37,8 @@ function loadTable() {
 
 function Delete(url) {
     swal({
-        title: "Are you sure you want to Delete?",
-        text: "You will not be able to restore the data!",
+        title: "Ta operacja spowoduje usunięcie danych.",
+        text: "Kliknij ok by przejść dalej.",
         icon: "warning",
         buttons: true,
         dangerMode: true

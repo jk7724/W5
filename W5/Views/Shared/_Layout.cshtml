@@ -21,7 +21,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">W5</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Word 5</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -31,7 +31,7 @@
                         @if (User.IsInRole(SD.Role_Admin))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Users" asp-action="Index">Users</a>
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Users" asp-action="Index">Users List</a>
                             </li>
                         }
 
@@ -41,7 +41,7 @@
                                 <a class="nav-link text-dark" asp-area="User" asp-controller="Dictionary" asp-action="Index">Słownik</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="User" asp-controller="CreateSet" asp-action="Index">Dodaj słownik</a>
+                                <a class="nav-link text-dark" asp-area="User" asp-controller="CreateSet" asp-action="Index">Dodaj zestaw</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="User" asp-controller="Calendar" asp-action="Index">Kalendarz</a>
@@ -65,7 +65,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - W5 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - Word 5 - created by Marcin Pankiewicz
         </div>
     </footer>
 

@@ -66,7 +66,7 @@ function check() {
     document.getElementById("content").innerHTML = `<div class="border">
         <br /> <br />
         <h1 style="text-align:center;" class="nativeW">`+ word.nativeWord +`</h1>
-        <div class="form-group row mt-5 mb-5">
+        <div class="form-group row mt-5 mb-5 ml-3">
             <div class="col-4">
                 <h3>Prawidłowa odpowiedź: </h3>
             </div>
@@ -74,7 +74,7 @@ function check() {
                 <h3>`+ word.learnWord +`</h3>
             </div>
         </div>
-        <div class="form-group row mt-5 mb-5">
+        <div class="form-group row mt-5 mb-5 ml-3">
             <div class="col-4">
                 <h3>Twoja odpowiedź: </h3>
             </div>
@@ -83,7 +83,7 @@ function check() {
             </div>
         </div>
         
-        <div class="form-group row mt-5 mb-5">
+        <div class="form-group row mt-5 mb-5 ml-3">
             <div class="col-4"><h4>Przykładowe zdanie:</h4></div>
             <div class="col-4">
                 <h4>`+ word.nativeSentence +`</h4>

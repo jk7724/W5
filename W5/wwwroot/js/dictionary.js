@@ -25,10 +25,10 @@ function loadTable() {
                     return `
                             <div class="text-center">
                                 <a href="/User/Dictionary/Edit/${data}" class="btn btn-success text-white" style="cursor:pointer">
-                                 Edit   
+                                 Edytuj   
                                 </a>
                                 <a onclick=Delete("/User/CreateSet/Delete/${data}") class="btn btn-danger text-white" style="cursor:pointer">
-                                 Delete  
+                                 Usuń  
                                 </a>
                             </div>
                            `;
@@ -56,7 +56,7 @@ function loadTable2() {
                     return `
                             <div class="text-center">
                                 <a onclick=Delete("/User/Dictionary/Delete/${data}") class="btn btn-danger text-white" style="cursor:pointer">
-                                 Delete  
+                                 Usuń 
                                 </a>
                             </div>
                            `;
@@ -69,8 +69,8 @@ function loadTable2() {
 function Delete(url) {
     console.log(url);
     swal({
-        title: "Are you sure you want to Delete?",
-        text: "You will not be able to restore the data!",
+        title: "Ta operacja spowoduje usunięcie danych.",
+        text: "Kliknij ok by przejść dalej.",
         icon: "warning",
         buttons: true,
         dangerMode: true

@@ -116,12 +116,7 @@ namespace W5.Areas.User.Controllers
 
             _db.SaveChanges();
 
-            //if (HttpContext.Session.GetInt32(SD.ssSetId) != null)
-            //{
-            //    HttpContext.Session.Remove(SD.ssSetId);
-            //}
-
-            return Json(new { success = true, message = "The object was successfully deleted from Db " });
+            return Json(new { success = true, message = "Dane zostały usunięte z bazy danych" });
         }
         #endregion
 

@@ -1,3 +1,4 @@
+using DataAccess.Initializer;
 using EmailService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,7 +16,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Utilities;
 using W5.DataAccess.Data;
-using IEmailSender = EmailService.IEmailSender;
+
 
 namespace W5
 {
@@ -38,9 +39,12 @@ namespace W5
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddDefaultTokenProviders()
                 .AddRoles<IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
+
+            //var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
             var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
             services.AddSingleton(emailConfig);
             services.AddScoped<IEmailSender, EmailSender>();
+            services.AddScoped<IDbInitializer, DbInitializer>();
             services.AddControllersWithViews();
 
             services.AddSession(options =>
@@ -52,7 +56,7 @@ namespace W5
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDbInitializer dbInitializer)
         {
             if (env.IsDevelopment())
             {
@@ -72,7 +76,7 @@ namespace W5
             app.UseSession();
             app.UseAuthentication();
             app.UseAuthorization();
-
+            dbInitializer.Initialize();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

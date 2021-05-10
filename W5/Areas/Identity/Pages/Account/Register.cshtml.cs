@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using EmailService;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -16,7 +15,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Models;
 using Utilities;
-using IEmailSender = EmailService.IEmailSender;
+
 
 namespace W5.Areas.Identity.Pages.Account
 {
@@ -97,18 +96,7 @@ namespace W5.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    //chceck if role exist. If not, create new role
-                    if(!await _roleManager.RoleExistsAsync(SD.Role_Admin))
-                    {
-                        await _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin));
-                    }
-                    if (!await _roleManager.RoleExistsAsync(SD.Role_User))
-                    {
-                        await _roleManager.CreateAsync(new IdentityRole(SD.Role_User));
-                    }
-
-                    //await _userManager.AddToRoleAsync(user, SD.Role_Admin); //temp. Add admin role to first user 
-                    await _userManager.AddToRoleAsync(user, SD.Role_User); //temp. Add admin role to first user 
+                    await _userManager.AddToRoleAsync(user, SD.Role_User); 
 
                     //this send email veryfication, uncoment later
 
@@ -120,11 +108,9 @@ namespace W5.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    //await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                    //    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-                    var message = new Message(new string[] { Input.Email }, "Mail Mail", "Kontakt zostal nawiazany lol");
-
-                   _emailSender.SendEmail(message);
+                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                  
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

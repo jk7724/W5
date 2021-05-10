@@ -12,7 +12,7 @@
             <h3>Wybierz zestaw</h3>
         </div>
         <div class="col-8">
-            @Html.DropDownListFor(m => m.SetId, Model.SetsList, "-Select a set",
+            @Html.DropDownListFor(m => m.SetId, Model.SetsList, "-Wybierz zestaw",
            new { @class = "form-control" })
             <span asp-validation-for="SetId" class="text-danger"></span>
         </div>

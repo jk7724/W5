@@ -145,7 +145,7 @@ namespace W5.Areas.User.Controllers
 
             _db.SaveChanges();
 
-            return Json(new { success = true, message = "The object was successfully deleted from Db " });
+            return Json(new { success = true, message = "Dane zostały usunięte z bazy danych" });
         }
 
         #endregion
